@@ -1,83 +1,22 @@
-<html>
-
-<head>
-	<title>Stella bo bella</title>
-	
-	<style type="text/css">
-	<!--
-        /* here are the colors, font sizes, etc. used throughout the page */
-        /* the font-family style is repeated so that Netscape displays it properly */
-
-		/* regular text */   p { font-family: verdana, arial, sans-serif; font-size: 9pt }
-		/* blog title */    h2 { font-family: verdana, arial, sans-serif; font-size: 13pt }    
-		/* date */          h3 { font-family: verdana, arial, sans-serif; font-size: 9pt; color: #9900FF }      
-		/* posting info */  h4 { font-family: verdana, arial, sans-serif; font-size: 9pt; font-weight: normal; color: #9900FF }      
-		/* links, baby */    a { text-decoration: none; font-weight: bold }
-
-	-->
-	</style> 
-
-</head>
-
-<body bgcolor="#CCCC33" text="#000000" link="#006699" vlink="#3399CC" alink="#3399CC">
-
-<!-- this outermost table makes the black 1px border --> 
-<table width="450" border="0" cellspacing="0" cellpadding="1" align="center">
-    <tr bgcolor="#000000"> 
-        <td>
-      
-	    <!-- here's the main table where all the good stuff goes -->
-	    <table width="450" border="0" cellspacing="0" cellpadding="10">
-        		
-		<!-- row that holds main links (home, archives, etc.) -->
-		<tr bgcolor="#CCCCFF"> 
-       	            <td> 
-                        <p align="right"><a href="index.html">home</a> | <a href="index.html">archives</a></p>
-       	     	    </td>
-  	        </tr>
-        		
-		<!-- row for main blog content.  yippee! -->
-		<tr bgcolor="#CCCCFF"> 
-          	    <td>
-                        <h2>Stella bo bella</h2>
-                        <p align="center">random chapters</p>
-
-                        
-                            
-                                <h3>Saturday, March 08, 2003</h3>
-                            
-                            
-			    
-                            <p><a name="90380986"></a><a href="http://www.wehrle.net/">wehrle</a></p>
-                        
-                            <h4 align="right">.: posted by Ellen <a href="index.html#90380986">6:42 PM</a></h4>
-                            <br>
-                        
-                            
-                            
-			    
-                            <p><a name="90380614"></a>this is just the beginning of my random thoughts....</p>
-                        
-                            <h4 align="right">.: posted by Ellen <a href="index.html#90380614">6:31 PM</a></h4>
-                            <br>
-                        
-                    </td>
- 		</tr>
-		<tr bgcolor="#CCCCFF">
-                    <td>
-                        <div align="right">
-<!-- please keep a Blogger link on you page. thanks. -->
-<a href="http://www.blogger.com">
-<img src="http://buttons.blogger.com/bloggerbutton61.gif" width="146" height="18" border="0"></a>
+---
+layout: base
+title: Ellen Wehrle
+---
+{% if page.cover_image %}
+<div class="article-cover">
+    <div>
+        <img src="/images/{{ page.cover_image }}" class="image">
+    </div>
 </div>
-                    </td>
-                </tr>
-            </table> <!-- end of main table -->
-
-	</td>
-    </tr>
-</table>
-
-</body>
-
-</html>
+{% endif %}
+<article class="container">
+  <section>
+  <ul style="list-style-type: none;">
+  <li> <h1 class="title">Ellen Wehrle</h1>
+  <li> <h2 class="subtitle">Profiles</h2>
+  <li> <a href="https://www.facebook.com/ellen.wehrle">Facebook</a>
+  <li> <a href="http://www.linkedin.com/pub/ellen-wehrle/17/717/998">LinkedIn</a>
+  <li> <a href="https://twitter.com/EllenWehrle">Twitter</a>
+  </ul>
+  </section>
+</article>

@@ -1,44 +1,27 @@
-<html>
-<head>
-<title>Rick Wehrle</title>
-<meta name="author" content="Rick Wehrle">
-<meta name="description" content="Rick Wehrle">
-<meta name="keywords" content="wehrle, whorley, worley, wehrley, wehrli,wiley">
-<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"> 
-</script> 
-<script type="text/javascript"> 
-_uacct = "UA-79965-1"; 
-urchinTracker(); 
-</script>
-</head>
-<body text="000000" bgcolor="ffffff">
-<b>Rick Wehrle</b><br />
-<ul>
-<b>Family</b><br />
-<b><a href="/ellen/">Ellen Wehrle</a></b> - wife<br />
-<b><a href="/eva/">Eva Wehrle</a></b> - daughter<br />
-<b><a href="/anna/">Anna Wehrle</a></b> - daughter<br />
-<b><a href="/clara/">Clara Wehrle</a></b> - daughter<br />
-<b><a href="/robert/">Robert Wehrle</a></b> - son
-<p>
-<b>Profiles</b><br>
-<b><a href="http://www.linkedin.com/in/wehrle">My LinkedIn Profile</a></b>
- - request connection using my rick at wehrle.net email address<br />
-<b><a href="/rick/resume/">My Resume</a></b> - for archival purposes only
-<p>
-<b>Work</b><br>
-<b><a href="http://www.directemployers.org/">DirectEmployers Association</a></b>
- - a nonprofit association of employers<br />
-<b><a href="http://www.monster.com/">Monster Worldwide</a></b><br />
-<p>
-<b>Associations</b><br>
-<b><a href="http://www.acm.org/">ACM</a></b> - Association for Computing Machinery<br />
-<p>
-<b>Reading</b><br>
-<b><a href="http://www.edge.org/">Edge</a></b>
- - To arrive at the edge of the world's knowledge,
-seek out the most complex and sophisticated minds,
-put them in a room together, and have them ask each
-other the questions they are asking themselves.
-</body>
-</html>
+---
+layout: base
+title: Rick Wehrle
+---
+{% if page.cover_image %}
+<div class="article-cover">
+    <div>
+        <img src="/images/{{ page.cover_image }}" class="image">
+    </div>
+</div>
+{% endif %}
+<article class="container">
+  <section>
+  <ul style="list-style-type: none;">
+  <li> <h1 class="title">Rick Wehrle</h1>
+  <li> <h2 class="subtitle">Profiles</h2>
+  <li> <a href="https://www.facebook.com/Wehrlock">Facebook</a>
+  <li> <a href="https://github.com/wehrlock">Github</a>
+  <li> <a href="https://plus.google.com/+RickWehrle">Google+</a>
+  <li> <a href="http://instagram.com/wehrlock">Instagram</a>
+  <li> <a href="https://www.linkedin.com/in/wehrle">LinkedIn</a>
+  <li> <a href="https://twitter.com/wehrlock">Twitter</a>
+  <li> <h2 class="subtitle">Resume</h2>
+  <li> <a href="/rick/resume/">My Resume</a>
+  </ul>
+  </section>
+</article>
