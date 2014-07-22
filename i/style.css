@@ -1,0 +1,75 @@
+BODY {
+	background : #ffffff;
+ 	color=#000000;
+	font-family : Helvetica, Arial, sans-serif;
+}
+ 
+H1 {
+ 	font-family : Helvetica, Arial, sans-serif;
+ 	font-size : large;
+ 	color : #000000;
+}
+ 
+H2 {
+ 	font-family : Helvetica, Arial, sans-serif;
+ 	font-size : medium;
+ 	color : #000000;
+}
+ 
+H3 {
+ 	font-family : Helvetica, Arial, sans-serif;
+ 	font-size : small;
+ 	color : #000000;
+}
+ 
+.RightEven  {
+ 	background : #ffffcc;
+ 	color=#000000;
+	font-family : Verdana, Geneva, serif;
+ 	font-weight : bold;
+ 	font-size : xx-small;
+ 	background-color : #ffffcc;
+}
+
+.RightOdd  {
+ 	background : #ccffcc;
+ 	color=#000000;
+	font-family : Verdana, Geneva, serif;
+ 	font-weight : bold;
+ 	font-size : xx-small;
+ 	background-color : #ccffcc;
+}
+
+.LeftOdd  {
+ 	background : #ffffcc;
+ 	color=#000000;
+	font-family : Verdana, Geneva, serif;
+ 	font-weight : bold;
+ 	font-size : xx-small;
+ 	background-color : #ffffcc;
+}
+
+.LeftEven  {
+ 	background : #ccffcc;
+ 	color=#000000;
+	font-family : Verdana, Geneva, serif;
+ 	font-weight : bold;
+ 	font-size : xx-small;
+ 	background-color : #ccffcc;
+}
+
+.RCWhead {
+ 	color=#000000;
+	font-family : Verdana, Geneva, serif;
+ 	font-weight : bold;
+ 	font-size : large;
+ 	background-color : #ffff99;
+}
+
+.RCWbody {
+ 	color=#000000;
+	font-family : Verdana, Geneva, serif;
+ 	font-weight : bold;
+ 	font-size : small;
+ 	background-color : #ffffcc;
+}
