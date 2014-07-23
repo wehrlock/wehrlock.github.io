@@ -1,14 +1,24 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
-<html>
- <head>
-  <title>Index of /anna</title>
- </head>
- <body>
-<h1>Index of /anna</h1>
-<ul><li><a href="../index.html"> Parent Directory</a></li>
-<li><a href="20040602/index.html"> 20040602/</a></li>
-<li><a href="anna_birth.txt"> anna_birth.txt</a></li>
-<li><a href="birthday/index.html"> birthday/</a></li>
-</ul>
-<address>Apache Server at wehrle.net Port 80</address>
-</body></html>
+---
+layout: base
+title: Anna Wehrle
+---
+{% if page.cover_image %}
+<div class="article-cover">
+    <div>
+        <img src="/images/{{ page.cover_image }}" class="image">
+    </div>
+</div>
+{% endif %}
+<article class="container">
+  <section>
+  <ul style="list-style-type: none;">
+  <li> <h1 class="title">{{ page.title }}</h1>
+  <li> <h2 class="subtitle">Profiles</h2>
+  {% if site.data.wehrle.anna.profiles %}
+  {% for profile in site.data.wehrle.anna.profiles %}
+    <li> <a href="{{ profile[1] }}">{{ profile[0] }}</a>
+  {% endfor %}
+  {% endif %}
+  </ul>
+  </section>
+</article>

@@ -11,15 +11,14 @@ title: Rick Wehrle
 {% endif %}
 <article class="container">
   <section>
-  <ul style="list-style-type: none;">
+  <ul class="list-unstyled">
   <li> <h1 class="title">Rick Wehrle</h1>
   <li> <h2 class="subtitle">Profiles</h2>
-  <li> <a href="https://www.facebook.com/Wehrlock">Facebook</a>
-  <li> <a href="https://github.com/wehrlock">Github</a>
-  <li> <a href="https://plus.google.com/+RickWehrle">Google+</a>
-  <li> <a href="http://instagram.com/wehrlock">Instagram</a>
-  <li> <a href="https://www.linkedin.com/in/wehrle">LinkedIn</a>
-  <li> <a href="https://twitter.com/wehrlock">Twitter</a>
+  {% if site.data.wehrle.rick.profiles %}
+  {% for profile in site.data.wehrle.rick.profiles %}
+    <li> <a href="{{ profile[1] }}">{{ profile[0] }}</a>
+  {% endfor %}
+  {% endif %}
   <li> <h2 class="subtitle">Resume</h2>
   <li> <a href="/rick/resume/">My Resume</a>
   </ul>

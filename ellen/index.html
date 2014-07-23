@@ -11,12 +11,14 @@ title: Ellen Wehrle
 {% endif %}
 <article class="container">
   <section>
-  <ul style="list-style-type: none;">
+  <ul class="list-unstyled">
   <li> <h1 class="title">Ellen Wehrle</h1>
   <li> <h2 class="subtitle">Profiles</h2>
-  <li> <a href="https://www.facebook.com/ellen.wehrle">Facebook</a>
-  <li> <a href="http://www.linkedin.com/pub/ellen-wehrle/17/717/998">LinkedIn</a>
-  <li> <a href="https://twitter.com/EllenWehrle">Twitter</a>
+  {% if site.data.wehrle.ellen.profiles %}
+  {% for profile in site.data.wehrle.ellen.profiles %}
+    <li> <a href="{{ profile[1] }}">{{ profile[0] }}</a>
+  {% endfor %}
+  {% endif %}
   </ul>
   </section>
 </article>

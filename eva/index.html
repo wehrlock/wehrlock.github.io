@@ -1,14 +1,24 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
-<html>
- <head>
-  <title>Index of /eva</title>
- </head>
- <body>
-<h1>Index of /eva</h1>
-<ul><li><a href="../index.html"> Parent Directory</a></li>
-<li><a href="eva1218.jpg"> eva1218.jpg</a></li>
-<li><a href="eva_birth.txt"> eva_birth.txt</a></li>
-<li><a href="imx/index.html"> imx/</a></li>
-</ul>
-<address>Apache Server at wehrle.net Port 80</address>
-</body></html>
+---
+layout: base
+title: Eva Wehrle
+---
+{% if page.cover_image %}
+<div class="article-cover">
+    <div>
+        <img src="/images/{{ page.cover_image }}" class="image">
+    </div>
+</div>
+{% endif %}
+<article class="container">
+  <section>
+  <ul class="list-unstyled">
+  <li> <h1 class="title">Eva Wehrle</h1>
+  <li> <h2 class="subtitle">Profiles</h2>
+  {% if site.data.wehrle.eva.profiles %}
+  {% for profile in site.data.wehrle.eva.profiles %}
+    <li> <a href="{{ profile[1] }}">{{ profile[0] }}</a>
+  {% endfor %}
+  {% endif %}
+  </ul>
+  </section>
+</article>
