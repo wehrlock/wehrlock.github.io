@@ -2,18 +2,6 @@ title:        "Wehrle Family"
 subtitle:     "We like trees!"
 tagline:      "We like trees!"
 
-wehrle:
-  ellen_link: /ellen/
-  ellen_text: Ellen
-  eva_link: /eva/
-  eva_text: Eva
-  anna_link: /anna/
-  anna_text: Anna
-  clara_link: /clara/
-  clara_text: Clara
-  robert_link: /robert/
-  robert_text: Robert
-
 inc:
   # Blog Information
   cover_image:  rick-and-ellen-cover.jpg

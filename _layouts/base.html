@@ -34,8 +34,8 @@
     <header>
         <nav id="navigation">
             <a class="brand" href="/"><img src="/images/{{ site.inc.logo }}" alt="Tree of Life"></a>
-            <a href="{{ site.data.rick.link }}">{{ site.data.rick.text }}</a>
-            <a href="{{ site.wehrle.ellen_link }}">{{ site.wehrle.ellen_text }}</a>
+            <a href="{{ site.data.wehrle.rick.path }}">{{ site.data.wehrle.rick.name }}</a>
+            <a href="{{ site.data.wehrle.ellen.path }}">{{ site.data.wehrle.ellen.name }}</a>
         </nav>
         <nav class="tagline">
             {% if site.tagline %}
@@ -57,29 +57,17 @@
         </nav>
 
         <nav>
-            <a href="{{ site.data.rick.link }}">{{ site.data.rick.text }}</a> &middot;
-            <a href="{{ site.wehrle.ellen_link }}">{{ site.wehrle.ellen_text }}</a>
+            <a href="{{ site.data.wehrle.rick.path }}">{{ site.data.wehrle.rick.name }}</a> &middot;
+            <a href="{{ site.data.wehrle.ellen.path }}">{{ site.data.wehrle.ellen.name }}</a>
         </nav>
 
         <nav>
-            <a href="{{ site.wehrle.eva_link }}">{{ site.wehrle.eva_text }}</a> &middot;
-            <a href="{{ site.wehrle.anna_link }}">{{ site.wehrle.anna_text }}</a> &middot;
-            <a href="{{ site.wehrle.clara_link }}">{{ site.wehrle.clara_text }}</a> &middot;
-            <a href="{{ site.wehrle.robert_link }}">{{ site.wehrle.robert_text }}</a>
+            <a href="{{ site.data.wehrle.eva.path }}">{{ site.data.wehrle.eva.name }}</a> &middot;
+            <a href="{{ site.data.wehrle.anna.path }}">{{ site.data.wehrle.anna.name }}</a> &middot;
+            <a href="{{ site.data.wehrle.clara.path }}">{{ site.data.wehrle.clara.name }}</a> &middot;
+            <a href="{{ site.data.wehrle.robert.path }}">{{ site.data.wehrle.robert.name }}</a>
         </nav>
         
-        <nav class="social">
-            {% if site.inc.twitter %}
-            <a href="https://twitter.com/{{ site.inc.twitter }}" title="Follow on Twitter" target="_blank"><i class="icon icon-twitter black"></i></a>
-            {% endif %}
-            {% if site.inc.facebook %}
-            <a href="https://www.facebook.com/{{ site.inc.facebook }}" title="Follow on Facebook" target="_blank"><i class="icon icon-facebook black"></i></a>
-            {% endif %}    
-            <a href="https://www.linkedin.com/in/{{ site.data.rick.linkedin }}" class="icon black">IN</a>
-            {% if site.inc.feed %}
-            <a href="/feed.xml" title="RSS Feed"><i class="icon icon-rss black"></i></a>
-            {% endif %}    
-        </nav>
     </div>
 </footer>
 

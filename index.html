@@ -5,7 +5,7 @@ layout: base
 
 <article class="container">
   <section>
-    Hello and welcome to the Wehrle Family website. Rick and Ellen Wehrle are the proud parents of Eva, Anna, Clara, and Robert. We live in the beautiful town of Zionsville, Indiana.
+    Hello and welcome to the Wehrle Family website. <a href="{{ site.data.wehrle.rick.path }}">{{ site.data.wehrle.rick.name }}</a> and <a href="{{ site.data.wehrle.ellen.path }}">{{ site.data.wehrle.ellen.name }}</a> Wehrle are the proud parents of <a href="{{ site.data.wehrle.eva.path }}">{{ site.data.wehrle.eva.name }}</a>, <a href="{{ site.data.wehrle.anna.path }}">{{ site.data.wehrle.anna.name }}</a>, <a href="{{ site.data.wehrle.clara.path }}">{{ site.data.wehrle.clara.name }}</a>, and <a href="{{ site.data.wehrle.robert.path }}">{{ site.data.wehrle.robert.name }}</a>. We live in the beautiful <a href="http://www.zionsville-in.gov/">town of Zionsville, Indiana</a>.
   </section>
 
 {% for post in paginator.posts %}

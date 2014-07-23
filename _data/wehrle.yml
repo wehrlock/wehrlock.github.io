@@ -1,0 +1,39 @@
+rick:
+  path: "/rick/"
+  name: "Rick"
+  profiles:
+    facebook: "https://www.facebook.com/Wehrlock"
+    github: "https://github.com/wehrlock"
+    gplus: "https://plus.google.com/+RickWehrle"
+    instagram: "http://instagram.com/wehrlock"
+    linkedin: "https://www.linkedin.com/in/wehrle"
+    twitter: "https://twitter.com/wehrlock"
+ellen:
+  path: "/ellen/"
+  name: "Ellen"
+  profiles:
+    gplus: "https://plus.google.com/114609269351542123411/"
+    facebook: "https://www.facebook.com/ellen.wehrle"
+    linkedin: "http://www.linkedin.com/pub/ellen-wehrle/17/717/998"
+    twitter: "https://twitter.com/EllenWehrle"
+eva:
+  path: "/eva/"
+  name: "Eva"
+  profiles:
+    gplus: "https://plus.google.com/107700886542797128884/"
+    facebook: "https://www.facebook.com/eva.wehrle"
+    instagram: "http://instagram.com/sshhmeevvaa"
+    pinterest: "http://www.pinterest.com/evawehrle/"
+    twitter: "https://twitter.com/evawehrle101"
+anna:
+  path: "/anna/"
+  name: "Anna"
+  profiles:
+    facebook: "https://www.facebook.com/anna.wehrle.1"
+    gplus: "https://plus.google.com/107985720858606511285/"
+clara:
+  path: "/clara/"
+  name: "Clara"
+robert:
+  path: "/robert/"
+  name: "Robert"
