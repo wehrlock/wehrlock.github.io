@@ -24,10 +24,8 @@ inc:
   url:          http://wehrle.net/
   facebook:     Wehrlock
   twitter:      wehrlock
-  feed:		false
+  feed:         false
   gplus:        '+RickWehrle'
-  
-  # Product Information
   
   # Comments
   disqus:
@@ -40,12 +38,10 @@ inc:
     facebook:   false
     gplus:      false
     hn:         false
-    
   
- # Analytics     
+  # Analytics     
   analytics:
     google: true # Add tracking code in _includes/_google-analytics.html
-      
       
   # Google Fonts
   # eg. 'Droid+Sans:400,700|Droid+Serif:400,700'
@@ -74,7 +70,7 @@ permalink:     /:title/
 paginate_path: 'page:num'
 paginate: 10
 
-markdown:      maruku
+markdown:      kramdown
 markdown_ext:  markdown,mkd,mkdn,md
 textile_ext:   textile
 
