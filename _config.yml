@@ -50,11 +50,11 @@ timezone:    America/Indiana/Indianapolis
 future:      false
 show_drafts: nil
 limit_posts: 0
-pygments:    true
+highlighter: pygments
 
 relative_permalinks: true
 
-permalink:     /:title/
+permalink:     pretty
 paginate_path: 'page:num'
 paginate: 10
 
