@@ -92,7 +92,8 @@ a {
     @extend .article-cover;
     height: 320px;
     background-color:#111;
-    background-size:cover;
+    background-size:contain;
+    background-repeat:no-repeat;
     background-position:center center;
     z-index:1;
 
