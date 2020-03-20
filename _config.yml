@@ -9,7 +9,7 @@ inc:
   
   # Company information
   company:      Wehrle Family
-  url:          http://wehrle.net/
+  url:          https://wehrle.net/
   facebook:     Wehrlock
   twitter:      wehrlock
   feed:         false
@@ -37,13 +37,14 @@ inc:
   
   # Setup your fonts, colors etc at _assets/stylesheets/main.scss
 
-url:         http://wehrle.net
+url:         https://wehrle.net
 source:      .
 destination: ./_site
-plugins:     ./_plugins
-layouts:     ./_layouts
+plugins_dir: ./_plugins
+layouts_dir: ./_layouts
+plugins:     ['jekyll-paginate']
 include:     ['.htaccess']
-exclude:     []
+exclude:     [vendor]
 timezone:    America/Indiana/Indianapolis
 
 # Show future posts
@@ -56,7 +57,7 @@ relative_permalinks: true
 
 permalink:     pretty
 paginate_path: 'page:num'
-paginate: 10
+paginate:      10
 
 markdown:      kramdown
 markdown_ext:  markdown,mkd,mkdn,md
@@ -89,7 +90,7 @@ kramdown:
   entity_output: as_char
   toc_levels: 1..6
   smart_quotes: lsquo,rsquo,ldquo,rdquo
-  use_coderay: false
+  enable_coderay: false
 
   coderay:
     coderay_wrap: div
