@@ -4,7 +4,7 @@ rick:
   profiles:
     Facebook: "https://www.facebook.com/Wehrlock"
     Github: "https://github.com/wehrlock"
-    "Google+": "https://plus.google.com/+RickWehrle"
+    Google: "https://currents.google.com/117181378782593234805"
     Instagram: "http://instagram.com/wehrlock"
     LinkedIn: "https://www.linkedin.com/in/wehrle"
     Twitter: "https://twitter.com/wehrlock"
@@ -12,17 +12,18 @@ ellen:
   path: "/ellen/"
   name: "Ellen"
   profiles:
-    "Google+": "https://plus.google.com/114609269351542123411/"
     Facebook: "https://www.facebook.com/ellen.wehrle"
+    Google: "https://currents.google.com/114609269351542123411"
     LinkedIn: "http://www.linkedin.com/pub/ellen-wehrle/17/717/998"
     Twitter: "https://twitter.com/EllenWehrle"
 eva:
   path: "/eva/"
   name: "Eva"
   profiles:
-    "Google+": "https://plus.google.com/107700886542797128884/"
     Facebook: "https://www.facebook.com/eva.wehrle"
+    Google: "https://currents.google.com/107700886542797128884"
     Instagram: "http://instagram.com/sshhmeevvaa"
+    LinkedIn: "https://www.linkedin.com/in/eva-wehrle-30b639109/"
     Pinterest: "http://www.pinterest.com/evawehrle/"
     Twitter: "https://twitter.com/evawehrle101"
 anna:
@@ -30,7 +31,8 @@ anna:
   name: "Anna"
   profiles:
     Facebook: "https://www.facebook.com/anna.wehrle.1"
-    "Google+": "https://plus.google.com/107985720858606511285/"
+    Google: "https://currents.google.com/107985720858606511285"
+    LinkedIn: "https://www.linkedin.com/in/anna-wehrle-343817149/"
 clara:
   path: "/clara/"
   name: "Clara"
