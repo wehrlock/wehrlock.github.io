@@ -1,0 +1,14 @@
+---
+import { Picture } from 'astro:assets';
+import Base from '@layouts/Base.astro';
+import cover_image from '@assets/404.jpg';
+---
+<Base title="Page Not Found">
+  <article class="container mx-auto max-w-prose">
+    <Picture src={cover_image} alt="Wehrle Family Photo" class="max-w-full h-auto rounded-lg" priority />
+    <section class="m-4">
+        <h1 class="text-4xl font-bold my-2">Page Not Found</h1>
+        <p>If you are looking for a specific family member, please use the navigation in the footer.</p>
+    </section>
+  </article>
+</Base>

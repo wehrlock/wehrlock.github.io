@@ -1,0 +1,22 @@
+---
+import { Picture } from 'astro:assets';
+import Base from '@layouts/Base.astro';
+import cover_image from '@assets/cover.jpg';
+import data from '@data/profiles.json';
+const rick = data.rick;
+const ellen = data.ellen;
+const eva = data.eva;
+const anna = data.anna;
+const clara = data.clara;
+const robert = data.robert;
+---
+<Base>
+  <article class="container mx-auto max-w-prose">
+    <Picture src={cover_image} alt="Wehrle Family Photo" class="max-w-full h-auto rounded-lg" priority />
+    <section class="m-4">
+      Hello and welcome to the Wehrle Family website.
+      <a href={rick?.path}>{rick?.name}</a> and <a href={ellen?.path}>{ellen?.name}</a> Wehrle are the proud parents of <a href={eva?.path}>{eva?.name}</a>, <a href={anna?.path}>{anna?.name}</a>, <a href={clara?.path}>{clara?.name}</a>, and <a href={robert?.path}>{robert?.name}</a>.
+      We live in the beautiful <a href="http://www.zionsville-in.gov/">town of Zionsville, Indiana</a>.
+    </section>
+  </article>
+</Base>

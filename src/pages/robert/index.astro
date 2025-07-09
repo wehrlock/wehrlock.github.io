@@ -1,0 +1,15 @@
+---
+import { Picture } from 'astro:assets';
+import Base from '@layouts/Base.astro';
+import cover_image from '@assets/robert/cover.jpg';
+---
+<Base title="Robert Wehrle">
+  <article class="container mx-auto max-w-prose">
+    <Picture src={cover_image} alt="Robert Wehrle" class="max-w-full h-auto rounded-lg" priority />
+    <section class="m-4">
+      <ul class="list-none">
+        <li><h1 class="text-2xl font-bold">Robert Wehrle</h1></li>
+      </ul>
+    </section>
+  </article>
+</Base>

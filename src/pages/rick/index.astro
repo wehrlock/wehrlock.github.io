@@ -1,0 +1,20 @@
+---
+import Base from '@layouts/Base.astro';
+import data from '@data/profiles.json';
+const profiles = Object.entries(data.rick.profiles || {});
+---
+<Base title="Rick Wehrle">
+  <article class="container mx-auto max-w-prose">
+    <section class="m-4">
+      <ul class="list-none space-y-2">
+        <li><h1 class="text-4xl font-bold">Rick Wehrle</h1></li>
+        <li><h2 class="text-2xl font-thin">Profiles</h2></li>
+        {profiles.length > 0 && profiles.map(([name, url]) => (
+          <li><a href={url} class="text-blue-500 hover:underline">{name}</a></li>
+        ))}
+        <li><h2 class="text-2xl font-thin">Resume</h2></li>
+        <li><a href="/rick/resume/" class="text-blue-500 hover:underline">My Resume</a></li>
+      </ul>
+    </section>
+  </article>
+</Base>

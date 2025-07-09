@@ -1,0 +1,60 @@
+---
+import { Picture } from 'astro:assets';
+import '@styles/global.css';
+import logo from '@assets/logo.png';
+import Scripts from '@components/Scripts.astro';
+import data from '@data/profiles.json';
+const { title, excerpt } = Astro.props;
+---
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title ? `${title} — Wehrle Family` : 'Wehrle Family'}</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href={logo.src}/>
+    <meta name="title" content={title ? title : 'Wehrle Family'}>
+    <meta property="og:title" content={title ? title : 'Wehrle Family'}/>
+    {excerpt && <meta property="og:description" content={excerpt}/>} 
+    {excerpt && <meta name="description" content={excerpt}/>} 
+    <meta property="og:site_name" content="Wehrle Family" />    
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="p-4 flex justify-between items-center">
+        <nav class="flex items-center space-x-4">
+            <a href="/">
+                <Picture src={logo} alt="Tree of Life" width="40" height="40" priority  />
+            </a>
+            <a href={data.rick.path} class="text-blue-500 hover:underline">{data.rick.name}</a>
+            <b class="text-gray-500">&amp;</b>
+            <a href={data.ellen.path} class="text-blue-500 hover:underline">{data.ellen.name}</a>
+        </nav>
+        <nav class="flex items-center">
+            <a href="/" class="border border-blue-500 text-blue-500 px-4 py-2 rounded hover:bg-blue-500 hover:text-white">Wehrle Family</a>
+        </nav>
+    </header>
+    <hr class="border-gray-300 mb-6" />
+    <main class="flex-1">
+        <slot />
+    </main>
+    <footer class="bg-gray-100 py-4">
+        <div class="container mx-auto text-center">
+            <nav class="text-gray-600">
+                &copy; {new Date().getFullYear()} <a href="/" class="text-blue-500 hover:underline">Wehrle Family</a>
+            </nav>
+            <nav class="mt-2">
+                <a href={data.rick.path} class="text-blue-500 hover:underline">{data.rick.name}</a> &middot;
+                <a href={data.ellen.path} class="text-blue-500 hover:underline">{data.ellen.name}</a>
+            </nav>
+            <nav class="mt-2">
+                <a href={data.eva.path} class="text-blue-500 hover:underline">{data.eva.name}</a> &middot;
+                <a href={data.anna.path} class="text-blue-500 hover:underline">{data.anna.name}</a> &middot;
+                <a href={data.clara.path} class="text-blue-500 hover:underline">{data.clara.name}</a> &middot;
+                <a href={data.robert.path} class="text-blue-500 hover:underline">{data.robert.name}</a>
+            </nav>
+        </div>
+    </footer>
+    <Scripts />
+</body>
+</html>
