@@ -1,5 +1,7 @@
 # wehrle.net
 
+We use Astro to build our static website.
+
 ## Project Structure
 
 Inside of your Astro project, you'll see the following folders and files:
