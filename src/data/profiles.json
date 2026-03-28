@@ -52,6 +52,7 @@
   },
   "robert": {
     "path": "/robert/",
-    "name": "Robert"
+    "name": "Robert",
+    "profiles": {}
   }
 }
