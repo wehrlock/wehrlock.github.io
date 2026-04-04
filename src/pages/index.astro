@@ -18,5 +18,24 @@ const robert = data.robert;
       <a href={rick?.path} class="text-blue-500 hover:underline">{rick?.givenName}</a> and <a href={ellen?.path} class="text-blue-500 hover:underline">{ellen?.givenName}</a> Wehrle are the proud parents of <a href={eva?.path} class="text-blue-500 hover:underline">{eva?.givenName}</a>, <a href={anna?.path} class="text-blue-500 hover:underline">{anna?.givenName}</a>, <a href={clara?.path} class="text-blue-500 hover:underline">{clara?.givenName}</a>, and <a href={robert?.path} class="text-blue-500 hover:underline">{robert?.givenName}</a>.
       We live in the beautiful <a href="https://www.zionsville-in.gov/" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:underline">town of Zionsville, Indiana</a>.
     </section>
+    <section class="m-4">
+      <h2 class="text-xl font-bold mb-4">Wehrle Whirly Designs</h2>
+      <div class="grid grid-cols-3 gap-4">
+        {[
+          { name: "Eye Stars", id: "eye-stars" },
+          { name: "Hexxy Haxxy", id: "hexxy-haxxy" },
+          { name: "Stirry Starry", id: "stirry-starry" },
+        ].map((design) => (
+          <a href={`/whirly/${design.id}/`} class="flex flex-col items-center gap-2 group">
+            <img
+              src={`/whirly/${design.id}.svg`}
+              alt={design.name}
+              class="w-full aspect-square rounded-lg border border-gray-200 group-hover:border-blue-500 transition-colors"
+            />
+            <span class="text-sm text-gray-600 group-hover:text-blue-500 transition-colors">{design.name}</span>
+          </a>
+        ))}
+      </div>
+    </section>
   </article>
 </Base>
