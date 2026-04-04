@@ -13,7 +13,7 @@ const { initialDesign = "eye-stars" } = Astro.props;
 
   <div class="flex items-center gap-3">
     <button
-      id="spin-btn"
+      id="spin-right-btn"
       class="px-3 py-1 rounded border border-gray-500 text-gray-400 text-sm font-medium hover:border-gray-300 hover:bg-gray-700 transition-colors"
     >&orarr;</button>
   </div>
@@ -75,7 +75,7 @@ const { initialDesign = "eye-stars" } = Astro.props;
 
   const designBtns = btnContainer.querySelectorAll<HTMLButtonElement>(".design-btn");
 
-  const btnSpin = document.getElementById("spin-btn")!;
+  const btnSpinRight = document.getElementById("spin-right-btn")!;
   const btnReset = document.getElementById("reset-btn")!;
 
 
@@ -178,7 +178,7 @@ const { initialDesign = "eye-stars" } = Astro.props;
     decayTimer = requestAnimationFrame(tick);
   }
 
-  btnSpin.addEventListener("click", startDecay);
+  btnSpinRight.addEventListener("click", startDecay);
 
   btnReset.addEventListener("click", () => {
     stopDecay();
