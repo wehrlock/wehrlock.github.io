@@ -8,7 +8,8 @@
       "Instagram": "http://instagram.com/wehrlock",
       "LinkedIn": "https://www.linkedin.com/in/wehrle/",
       "X": "https://x.com/wehrlock"
-    }
+    },
+    "resume": true
   },
   "ellen": {
     "path": "/ellen/",

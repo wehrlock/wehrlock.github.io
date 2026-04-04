@@ -5,20 +5,21 @@ interface Props {
   person: {
     name: string;
     profiles?: Record<string, string>;
+    resume?: boolean;
   };
   avatarType: 'picture' | 'initial';
   avatarImage?: ImageMetadata;
   coverImage?: ImageMetadata;
-  includeResumeLink?: boolean;
 }
 
-const { 
-  person, 
-  avatarType, 
-  avatarImage, 
+const {
+  person,
+  avatarType,
+  avatarImage,
   coverImage,
-  includeResumeLink = false 
 } = Astro.props;
+
+const includeResumeLink = !!person.resume;
 
 const profiles = Object.entries(person.profiles || {});
 ---
