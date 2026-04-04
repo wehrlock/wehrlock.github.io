@@ -130,17 +130,10 @@
     updateDisplay();
   });
 
-  function stopDecay() {
-    if (decayTimer !== null) {
-      cancelAnimationFrame(decayTimer);
-      decayTimer = null;
-    }
-  }
-
   function startDecay() {
-    stopDecay();
-    rps = 2.0;
+    rps += 2.0;
     updateDisplay();
+    if (decayTimer !== null) return; // already running
     let last = performance.now();
     function tick(now: number) {
       const dt = (now - last) / 1000;
