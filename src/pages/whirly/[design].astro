@@ -1,6 +1,7 @@
 ---
 import Base from '@layouts/Base.astro';
 import WhirlyViewer from '@components/WhirlyViewer.astro';
+import DesignNav from '@components/DesignNav.astro';
 
 const designs = [
   { name: "Eye Stars", id: "eye-stars" },
@@ -23,5 +24,8 @@ const current = designs.find(d => d.id === design)!;
   <article class="container mx-auto max-w-prose py-8 px-4">
     <h1 class="text-3xl font-bold tracking-wide text-center mb-8">Wehrle Whirly</h1>
     <WhirlyViewer initialDesign={design} />
+    <div class="mt-8">
+      <DesignNav currentDesign={design} />
+    </div>
   </article>
 </Base>

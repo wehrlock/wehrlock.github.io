@@ -56,7 +56,6 @@ const { initialDesign = "eye-stars" } = Astro.props;
     <span id="rps-display" class="tabular-nums text-sm min-w-[7ch] text-center text-gray-400">0.50 rps</span>
   </div>
 
-  <div class="flex flex-wrap justify-center gap-2" id="design-buttons"></div>
 </div>
 
 <style>
@@ -89,25 +88,6 @@ const { initialDesign = "eye-stars" } = Astro.props;
   const display = document.getElementById("rps-display")!;
   const btnUp = document.getElementById("rps-up")!;
   const btnDown = document.getElementById("rps-down")!;
-  const btnContainer = document.getElementById("design-buttons")!;
-
-  // Build design buttons
-  designs.forEach((d) => {
-    const btn = document.createElement("button");
-    const isActive = d.id === initialDesign;
-    btn.className = `design-btn px-4 py-2 rounded border text-sm font-medium transition-colors ${
-      isActive
-        ? "border-blue-500 bg-blue-500 text-white"
-        : "border-gray-600 text-gray-400 hover:border-gray-400 hover:text-gray-200"
-    }`;
-    btn.dataset.design = d.id;
-    btn.dataset.file = d.file;
-    btn.textContent = d.name;
-    btnContainer.appendChild(btn);
-  });
-
-  const designBtns = btnContainer.querySelectorAll<HTMLButtonElement>(".design-btn");
-
   const btnSpinRight = document.getElementById("spin-right-btn")!;
   const btnSpinLeft = document.getElementById("spin-left-btn")!;
   const btnStop = document.getElementById("stop-btn")!;
@@ -167,15 +147,6 @@ const { initialDesign = "eye-stars" } = Astro.props;
     }
     updateDisplay();
   }
-
-  designBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const id = btn.dataset.design!;
-      if (id !== currentDesign) {
-        window.location.href = `/whirly/${id}/`;
-      }
-    });
-  });
 
   function stopDecay() {
     if (decayTimer !== null) {

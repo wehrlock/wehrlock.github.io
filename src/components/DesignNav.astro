@@ -1,0 +1,26 @@
+---
+interface Props {
+  currentDesign: string;
+}
+const { currentDesign } = Astro.props;
+
+const designs = [
+  { name: "Eye Stars", id: "eye-stars" },
+  { name: "Hexxy Haxxy", id: "hexxy-haxxy" },
+  { name: "Stirry Starry", id: "stirry-starry" },
+];
+---
+
+<div class="flex flex-wrap justify-center gap-2" id="design-buttons">
+  {designs.map((d) => (
+    <a
+      href={`/whirly/${d.id}/`}
+      class:list={[
+        "px-4 py-2 rounded border text-sm font-medium transition-colors",
+        d.id === currentDesign
+          ? "border-blue-500 bg-blue-500 text-white"
+          : "border-gray-600 text-gray-400 hover:border-gray-400 hover:text-gray-200",
+      ]}
+    >{d.name}</a>
+  ))}
+</div>
