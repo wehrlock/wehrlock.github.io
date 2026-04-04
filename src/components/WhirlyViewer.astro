@@ -6,10 +6,18 @@ const { initialDesign = "eye-stars" } = Astro.props;
 ---
 
 <div class="flex flex-col items-center gap-8 w-full max-w-lg mx-auto" id="whirly-viewer" data-initial-design={initialDesign}>
-  <div
-    id="whirly-svg-container"
-    class="w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center"
-  ></div>
+  <div class="relative">
+    <div
+      id="whirly-svg-container"
+      class="w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center"
+    ></div>
+    <button
+      id="fullscreen-btn"
+      class="absolute top-2 right-2 w-8 h-8 rounded border border-gray-500 text-gray-400 flex items-center justify-center hover:border-gray-300 hover:bg-gray-700 transition-colors"
+      aria-label="Toggle Fullscreen"
+      title="Toggle Fullscreen"
+    ><svg id="fs-expand" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg><svg id="fs-compress" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/></svg></button>
+  </div>
 
   <div class="flex items-center gap-3">
     <button
@@ -51,6 +59,23 @@ const { initialDesign = "eye-stars" } = Astro.props;
   <div class="flex flex-wrap justify-center gap-2" id="design-buttons"></div>
 </div>
 
+<style>
+  #whirly-viewer:fullscreen {
+    background: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    padding: 1rem;
+  }
+  #whirly-viewer:fullscreen #whirly-svg-container {
+    width: 80vh;
+    height: 80vh;
+    max-width: 100vw;
+  }
+</style>
+
 <script>
   const designs = [
     { name: "Eye Stars", file: "/whirly/eye-stars-animated.svg", id: "eye-stars" },
@@ -86,6 +111,9 @@ const { initialDesign = "eye-stars" } = Astro.props;
   const btnSpinRight = document.getElementById("spin-right-btn")!;
   const btnSpinLeft = document.getElementById("spin-left-btn")!;
   const btnStop = document.getElementById("stop-btn")!;
+  const btnFullscreen = document.getElementById("fullscreen-btn")!;
+  const fsExpand = document.getElementById("fs-expand")!;
+  const fsCompress = document.getElementById("fs-compress")!;
 
 
   let rps = 0.5;
@@ -230,6 +258,20 @@ const { initialDesign = "eye-stars" } = Astro.props;
       rps = Math.floor(rps * 4 - 0.001) / 4;
       updateDisplay();
     }
+  });
+
+  btnFullscreen.addEventListener("click", () => {
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else {
+      viewer.requestFullscreen();
+    }
+  });
+
+  document.addEventListener("fullscreenchange", () => {
+    const isFs = !!document.fullscreenElement;
+    fsExpand.classList.toggle("hidden", isFs);
+    fsCompress.classList.toggle("hidden", !isFs);
   });
 
   // Load design matching the route
