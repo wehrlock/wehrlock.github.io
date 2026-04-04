@@ -21,13 +21,13 @@ const { initialDesign = "eye-stars" } = Astro.props;
       id="rps-down"
       class="w-9 h-9 rounded-full border-2 border-gray-500 text-gray-400 text-lg flex items-center justify-center hover:border-gray-300 hover:bg-gray-700 transition-colors"
       aria-label="Decrease RPS"
-    >&minus;</button>
+    >&larr;</button>
     <span id="rps-display" class="tabular-nums text-sm min-w-[7ch] text-center text-gray-400">0.50 rps</span>
     <button
       id="rps-up"
       class="w-9 h-9 rounded-full border-2 border-gray-500 text-gray-400 text-lg flex items-center justify-center hover:border-gray-300 hover:bg-gray-700 transition-colors"
       aria-label="Increase RPS"
-    >+</button>
+    >&rarr;</button>
   </div>
 
   <div class="flex flex-wrap justify-center gap-2" id="design-buttons"></div>
@@ -67,6 +67,7 @@ const { initialDesign = "eye-stars" } = Astro.props;
 
   const btnSpin = document.getElementById("spin-btn")!;
 
+
   let rps = 0.5;
   let currentDesign: string | null = null;
   let decayTimer: number | null = null;
@@ -77,7 +78,7 @@ const { initialDesign = "eye-stars" } = Astro.props;
   function rotationLoop(now: number) {
     const dt = (now - lastFrame) / 1000;
     lastFrame = now;
-    if (rps > 0) {
+    if (rps !== 0) {
       angle = (angle + rps * 360 * dt) % 360;
     }
     const spinner = container.querySelector(".spinner") as SVGElement | null;
@@ -89,7 +90,8 @@ const { initialDesign = "eye-stars" } = Astro.props;
   requestAnimationFrame(rotationLoop);
 
   function updateDisplay() {
-    display.textContent = rps.toFixed(2) + " rps";
+    const prefix = rps < 0 ? "-" : "";
+    display.textContent = prefix + Math.abs(rps).toFixed(2) + " rps";
   }
 
   async function loadDesign(file: string, id: string) {
@@ -142,7 +144,7 @@ const { initialDesign = "eye-stars" } = Astro.props;
 
   btnDown.addEventListener("click", () => {
     stopDecay();
-    rps = Math.max(0, Math.floor(rps * 4 - 0.001) / 4);
+    rps = Math.floor(rps * 4 - 0.001) / 4;
     updateDisplay();
   });
 
@@ -167,6 +169,7 @@ const { initialDesign = "eye-stars" } = Astro.props;
 
   btnSpin.addEventListener("click", startDecay);
 
+
   document.addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight") {
       stopDecay();
@@ -174,7 +177,7 @@ const { initialDesign = "eye-stars" } = Astro.props;
       updateDisplay();
     } else if (e.key === "ArrowLeft") {
       stopDecay();
-      rps = Math.max(0, Math.floor(rps * 4 - 0.001) / 4);
+      rps = Math.floor(rps * 4 - 0.001) / 4;
       updateDisplay();
     }
   });
