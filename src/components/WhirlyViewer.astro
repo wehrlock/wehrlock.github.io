@@ -1,4 +1,11 @@
-<div class="flex flex-col items-center gap-8 w-full max-w-lg mx-auto" id="whirly-viewer">
+---
+interface Props {
+  initialDesign?: string;
+}
+const { initialDesign = "eye-stars" } = Astro.props;
+---
+
+<div class="flex flex-col items-center gap-8 w-full max-w-lg mx-auto" id="whirly-viewer" data-initial-design={initialDesign}>
   <div
     id="whirly-svg-container"
     class="w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center"
@@ -33,6 +40,8 @@
     { name: "Stirry Starry", file: "/whirly/stirry-starry-animated.svg", id: "stirry-starry" },
   ];
 
+  const viewer = document.getElementById("whirly-viewer")!;
+  const initialDesign = viewer.dataset.initialDesign || "eye-stars";
   const container = document.getElementById("whirly-svg-container")!;
   const display = document.getElementById("rps-display")!;
   const btnUp = document.getElementById("rps-up")!;
@@ -40,10 +49,11 @@
   const btnContainer = document.getElementById("design-buttons")!;
 
   // Build design buttons
-  designs.forEach((d, i) => {
+  designs.forEach((d) => {
     const btn = document.createElement("button");
+    const isActive = d.id === initialDesign;
     btn.className = `design-btn px-4 py-2 rounded border text-sm font-medium transition-colors ${
-      i === 0
+      isActive
         ? "border-blue-500 bg-blue-500 text-white"
         : "border-gray-600 text-gray-400 hover:border-gray-400 hover:text-gray-200"
     }`;
@@ -110,13 +120,10 @@
 
   designBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
-      designBtns.forEach((b) => {
-        b.classList.remove("border-blue-500", "bg-blue-500", "text-white");
-        b.classList.add("border-gray-600", "text-gray-400");
-      });
-      btn.classList.remove("border-gray-600", "text-gray-400");
-      btn.classList.add("border-blue-500", "bg-blue-500", "text-white");
-      loadDesign(btn.dataset.file!, btn.dataset.design!);
+      const id = btn.dataset.design!;
+      if (id !== currentDesign) {
+        window.location.href = `/whirly/${id}/`;
+      }
     });
   });
 
@@ -161,7 +168,7 @@
     }
   });
 
-  // Load first design on init
-  const first = designBtns[0];
-  if (first) loadDesign(first.dataset.file!, first.dataset.design!);
+  // Load design matching the route
+  const initial = designs.find(d => d.id === initialDesign) || designs[0];
+  loadDesign(initial.file, initial.id);
 </script>
