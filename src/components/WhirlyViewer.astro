@@ -1,0 +1,125 @@
+<div class="flex flex-col items-center gap-8 w-full max-w-lg mx-auto" id="whirly-viewer">
+  <div
+    id="whirly-svg-container"
+    class="w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center"
+  ></div>
+
+  <div class="flex items-center gap-3">
+    <button
+      id="rps-down"
+      class="w-9 h-9 rounded-full border-2 border-gray-500 text-gray-200 text-lg flex items-center justify-center hover:border-gray-300 hover:bg-gray-700 transition-colors"
+      aria-label="Decrease RPS"
+    >&minus;</button>
+    <span id="rps-display" class="tabular-nums text-sm min-w-[7ch] text-center text-gray-300">0.50 rps</span>
+    <button
+      id="rps-up"
+      class="w-9 h-9 rounded-full border-2 border-gray-500 text-gray-200 text-lg flex items-center justify-center hover:border-gray-300 hover:bg-gray-700 transition-colors"
+      aria-label="Increase RPS"
+    >+</button>
+  </div>
+
+  <div class="flex flex-wrap justify-center gap-2" id="design-buttons"></div>
+</div>
+
+<script>
+  const designs = [
+    { name: "Eye Stars", file: "/whirly/eye-stars-animated.svg", id: "eye-stars" },
+    { name: "Hexxy Haxxy", file: "/whirly/hexxy-haxxy-animated.svg", id: "hexxy-haxxy" },
+    { name: "Stirry Starry", file: "/whirly/stirry-starry-animated.svg", id: "stirry-starry" },
+  ];
+
+  const container = document.getElementById("whirly-svg-container")!;
+  const display = document.getElementById("rps-display")!;
+  const btnUp = document.getElementById("rps-up")!;
+  const btnDown = document.getElementById("rps-down")!;
+  const btnContainer = document.getElementById("design-buttons")!;
+
+  // Build design buttons
+  designs.forEach((d, i) => {
+    const btn = document.createElement("button");
+    btn.className = `design-btn px-4 py-2 rounded border text-sm font-medium transition-colors ${
+      i === 0
+        ? "border-blue-500 bg-blue-500 text-white"
+        : "border-gray-600 text-gray-400 hover:border-gray-400 hover:text-gray-200"
+    }`;
+    btn.dataset.design = d.id;
+    btn.dataset.file = d.file;
+    btn.textContent = d.name;
+    btnContainer.appendChild(btn);
+  });
+
+  const designBtns = btnContainer.querySelectorAll<HTMLButtonElement>(".design-btn");
+
+  let rps = 0.5;
+  let currentDesign: string | null = null;
+
+  function updateSpeed() {
+    const spinner = container.querySelector(".spinner") as HTMLElement | null;
+    if (!spinner) return;
+    if (rps <= 0) {
+      spinner.style.animationDuration = "0s";
+      spinner.style.animationPlayState = "paused";
+    } else {
+      spinner.style.animationPlayState = "running";
+      spinner.style.animationDuration = (1 / rps) + "s";
+    }
+    display.textContent = rps.toFixed(2) + " rps";
+  }
+
+  async function loadDesign(file: string, id: string) {
+    if (currentDesign === id) return;
+    currentDesign = id;
+    const res = await fetch(file);
+    let svgText = await res.text();
+    svgText = svgText.replace(/<\?xml[^?]*\?>/, "");
+    container.innerHTML = svgText;
+    const svg = container.querySelector("svg");
+    if (svg) {
+      if (!svg.getAttribute("viewBox")) {
+        const w = svg.getAttribute("width")?.replace("px", "") || "500";
+        const h = svg.getAttribute("height")?.replace("px", "") || "500";
+        svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+      }
+      svg.removeAttribute("width");
+      svg.removeAttribute("height");
+      svg.classList.add("w-full", "h-full");
+    }
+    updateSpeed();
+  }
+
+  designBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      designBtns.forEach((b) => {
+        b.classList.remove("border-blue-500", "bg-blue-500", "text-white");
+        b.classList.add("border-gray-600", "text-gray-400");
+      });
+      btn.classList.remove("border-gray-600", "text-gray-400");
+      btn.classList.add("border-blue-500", "bg-blue-500", "text-white");
+      loadDesign(btn.dataset.file!, btn.dataset.design!);
+    });
+  });
+
+  btnUp.addEventListener("click", () => {
+    rps = Math.round((rps + 0.25) * 100) / 100;
+    updateSpeed();
+  });
+
+  btnDown.addEventListener("click", () => {
+    rps = Math.max(0, Math.round((rps - 0.25) * 100) / 100);
+    updateSpeed();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") {
+      rps = Math.round((rps + 0.25) * 100) / 100;
+      updateSpeed();
+    } else if (e.key === "ArrowLeft") {
+      rps = Math.max(0, Math.round((rps - 0.25) * 100) / 100);
+      updateSpeed();
+    }
+  });
+
+  // Load first design on init
+  const first = designBtns[0];
+  if (first) loadDesign(first.dataset.file!, first.dataset.design!);
+</script>
