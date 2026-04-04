@@ -4,7 +4,7 @@ import '@styles/global.css';
 import logo from '@assets/logo.png';
 import Scripts from '@components/Scripts.astro';
 import data from '@data/profiles.json';
-const { title, excerpt } = Astro.props;
+const { title, excerpt, schema } = Astro.props;
 ---
 <!DOCTYPE html>
 <html>
@@ -18,7 +18,8 @@ const { title, excerpt } = Astro.props;
     <meta property="og:title" content={title ? title : 'Wehrle Family'}/>
     {excerpt && <meta property="og:description" content={excerpt}/>} 
     {excerpt && <meta name="description" content={excerpt}/>} 
-    <meta property="og:site_name" content="Wehrle Family" />    
+    <meta property="og:site_name" content="Wehrle Family" />
+    {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}    
 </head>
 <body class="min-h-screen flex flex-col">
     <header class="p-4 flex justify-between items-center">

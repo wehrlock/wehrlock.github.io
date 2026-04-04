@@ -1,12 +1,15 @@
 ---
 import Base from '@layouts/Base.astro';
 import ProfileCard from '@components/ProfileCard.astro';
+import { generatePersonSchema } from '@utils/schema';
 import avatarImage from '@assets/clara/avatar.jpg';
 import data from '@data/profiles.json';
 const person = data.clara;
 const fullName = person.givenName + " " + person.familyName;
+const siteUrl = import.meta.env.SITE_URL || 'https://wehrle.net';
+const schema = generatePersonSchema(person, siteUrl);
 ---
-<Base title={fullName}>
+<Base title={fullName} schema={schema}>
   <article class="container mx-auto max-w-prose py-8 px-4">
     <ProfileCard 
       person={person} 

@@ -10,6 +10,17 @@ export default defineConfig({
   site: "https://wehrle.net/",
   trailingSlash: "always",
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        '@': '/src',
+        '@components': '/src/components',
+        '@layouts': '/src/layouts',
+        '@data': '/src/data',
+        '@assets': '/src/assets',
+        '@styles': '/src/styles',
+        '@utils': '/src/utils',
+      }
+    }
   }
 });
