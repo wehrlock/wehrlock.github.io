@@ -1,6 +1,7 @@
 ---
 import Base from '@layouts/Base.astro';
 import ProfileCard from '@components/ProfileCard.astro';
+import avatarImage from '@assets/eva/avatar.jpg';
 import data from '@data/profiles.json';
 const person = data.eva;
 const fullName = person.givenName + " " + person.familyName;
@@ -9,7 +10,8 @@ const fullName = person.givenName + " " + person.familyName;
   <article class="container mx-auto max-w-prose py-8 px-4">
     <ProfileCard 
       person={person} 
-      avatarType="initial"
+      avatarType="picture"
+      avatarImage={avatarImage}
     />
   </article>
 </Base>
