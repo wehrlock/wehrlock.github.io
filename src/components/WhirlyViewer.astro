@@ -4,6 +4,11 @@
     class="w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center"
   ></div>
 
+  <button
+    id="spin-btn"
+    class="px-3 py-1 rounded border border-gray-500 text-gray-200 text-sm font-medium hover:border-gray-300 hover:bg-gray-700 transition-colors"
+  >Spin</button>
+
   <div class="flex items-center gap-3">
     <button
       id="rps-down"
@@ -50,19 +55,30 @@
 
   const designBtns = btnContainer.querySelectorAll<HTMLButtonElement>(".design-btn");
 
+  const btnSpin = document.getElementById("spin-btn")!;
+
   let rps = 0.5;
   let currentDesign: string | null = null;
+  let decayTimer: number | null = null;
+  let angle = 0;
+  let lastFrame = performance.now();
 
-  function updateSpeed() {
-    const spinner = container.querySelector(".spinner") as HTMLElement | null;
-    if (!spinner) return;
-    if (rps <= 0) {
-      spinner.style.animationDuration = "0s";
-      spinner.style.animationPlayState = "paused";
-    } else {
-      spinner.style.animationPlayState = "running";
-      spinner.style.animationDuration = (1 / rps) + "s";
+  // Drive rotation manually so speed changes are seamless
+  function rotationLoop(now: number) {
+    const dt = (now - lastFrame) / 1000;
+    lastFrame = now;
+    if (rps > 0) {
+      angle = (angle + rps * 360 * dt) % 360;
     }
+    const spinner = container.querySelector(".spinner") as SVGElement | null;
+    if (spinner) {
+      spinner.style.transform = `rotate(${angle}deg)`;
+    }
+    requestAnimationFrame(rotationLoop);
+  }
+  requestAnimationFrame(rotationLoop);
+
+  function updateDisplay() {
     display.textContent = rps.toFixed(2) + " rps";
   }
 
@@ -84,7 +100,12 @@
       svg.removeAttribute("height");
       svg.classList.add("w-full", "h-full");
     }
-    updateSpeed();
+    // Disable the CSS animation so we control rotation manually
+    const spinner = container.querySelector(".spinner") as SVGElement | null;
+    if (spinner) {
+      spinner.style.animation = "none";
+    }
+    updateDisplay();
   }
 
   designBtns.forEach((btn) => {
@@ -101,21 +122,49 @@
 
   btnUp.addEventListener("click", () => {
     rps = Math.round((rps + 0.25) * 100) / 100;
-    updateSpeed();
+    updateDisplay();
   });
 
   btnDown.addEventListener("click", () => {
     rps = Math.max(0, Math.round((rps - 0.25) * 100) / 100);
-    updateSpeed();
+    updateDisplay();
   });
+
+  function stopDecay() {
+    if (decayTimer !== null) {
+      cancelAnimationFrame(decayTimer);
+      decayTimer = null;
+    }
+  }
+
+  function startDecay() {
+    stopDecay();
+    rps = 2.0;
+    updateDisplay();
+    let last = performance.now();
+    function tick(now: number) {
+      const dt = (now - last) / 1000;
+      last = now;
+      rps = Math.max(0, rps - dt * 0.2);
+      updateDisplay();
+      if (rps > 0) {
+        decayTimer = requestAnimationFrame(tick);
+      } else {
+        decayTimer = null;
+      }
+    }
+    decayTimer = requestAnimationFrame(tick);
+  }
+
+  btnSpin.addEventListener("click", startDecay);
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight") {
       rps = Math.round((rps + 0.25) * 100) / 100;
-      updateSpeed();
+      updateDisplay();
     } else if (e.key === "ArrowLeft") {
       rps = Math.max(0, Math.round((rps - 0.25) * 100) / 100);
-      updateSpeed();
+      updateDisplay();
     }
   });
 
