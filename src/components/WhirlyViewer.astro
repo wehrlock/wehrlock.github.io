@@ -169,9 +169,9 @@ const { initialDesign = "eye-stars" } = Astro.props;
   });
 
   function startDecay() {
-    rps += 2.0;
+    stopDecay();
+    rps = Math.max(rps, 0) + 2.0;
     updateDisplay();
-    if (decayTimer !== null) return; // already running
     let last = performance.now();
     function tick(now: number) {
       const dt = (now - last) / 1000;
@@ -188,9 +188,9 @@ const { initialDesign = "eye-stars" } = Astro.props;
   }
 
   function startDecayLeft() {
-    rps -= 2.0;
+    stopDecay();
+    rps = Math.min(rps, 0) - 2.0;
     updateDisplay();
-    if (decayTimer !== null) return;
     let last = performance.now();
     function tick(now: number) {
       const dt = (now - last) / 1000;
