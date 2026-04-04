@@ -11,10 +11,12 @@ const { initialDesign = "eye-stars" } = Astro.props;
     class="w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center"
   ></div>
 
-  <button
-    id="spin-btn"
-    class="px-3 py-1 rounded border border-gray-500 text-gray-400 text-sm font-medium hover:border-gray-300 hover:bg-gray-700 transition-colors"
-  >Spin with Decay</button>
+  <div class="flex items-center gap-3">
+    <button
+      id="spin-btn"
+      class="px-3 py-1 rounded border border-gray-500 text-gray-400 text-sm font-medium hover:border-gray-300 hover:bg-gray-700 transition-colors"
+    >&orarr;</button>
+  </div>
 
   <div class="flex items-center gap-3">
     <button
@@ -28,6 +30,14 @@ const { initialDesign = "eye-stars" } = Astro.props;
       class="w-9 h-9 rounded-full border-2 border-gray-500 text-gray-400 text-lg flex items-center justify-center hover:border-gray-300 hover:bg-gray-700 transition-colors"
       aria-label="Increase RPS"
     >&rarr;</button>
+  </div>
+
+  <div class="flex items-center gap-3">
+    <button
+      id="reset-btn"
+      class="w-9 h-9 rounded-full border-2 border-gray-500 text-gray-400 text-sm flex items-center justify-center hover:border-gray-300 hover:bg-gray-700 transition-colors"
+      aria-label="Reset"
+    >&darr;</button>
   </div>
 
   <div class="flex flex-wrap justify-center gap-2" id="design-buttons"></div>
@@ -66,6 +76,7 @@ const { initialDesign = "eye-stars" } = Astro.props;
   const designBtns = btnContainer.querySelectorAll<HTMLButtonElement>(".design-btn");
 
   const btnSpin = document.getElementById("spin-btn")!;
+  const btnReset = document.getElementById("reset-btn")!;
 
 
   let rps = 0.5;
@@ -169,6 +180,16 @@ const { initialDesign = "eye-stars" } = Astro.props;
 
   btnSpin.addEventListener("click", startDecay);
 
+  btnReset.addEventListener("click", () => {
+    stopDecay();
+    rps = 0;
+    angle = 0;
+    const spinner = container.querySelector(".spinner") as SVGElement | null;
+    if (spinner) {
+      spinner.style.transform = `rotate(0deg)`;
+    }
+    updateDisplay();
+  });
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight") {
