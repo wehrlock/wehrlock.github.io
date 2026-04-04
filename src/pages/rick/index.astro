@@ -1,38 +1,18 @@
 ---
-import { Picture } from 'astro:assets';
 import Base from '@layouts/Base.astro';
+import ProfileCard from '@components/ProfileCard.astro';
 import profile_image from '@assets/rick/rick-green-bg.jpg';
 import data from '@data/profiles.json';
 const person = data.rick;
-const profiles = Object.entries(person.profiles || {});
 ---
 <Base title={person.name + " Wehrle"}>
   <article class="container mx-auto max-w-prose py-8 px-4">
-    <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden max-w-md mx-auto">
-      <div class="bg-gradient-to-r from-blue-500 to-cyan-500 h-24"></div>
-      <div class="px-6 pb-6 relative">
-        <div class="h-28 w-28 rounded-full border-4 border-white mx-auto -mt-14 flex items-center justify-center shadow-sm overflow-hidden bg-white">
-          <Picture src={profile_image} alt={person.name} class="w-full h-full object-cover" />
-        </div>
-        <div class="text-center mt-4 mb-6">
-          <h1 class="text-3xl font-bold text-gray-800">{person.name} Wehrle</h1>
-        </div>
-        
-        <div>
-          <h2 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 text-center">Profiles & Links</h2>
-          <div class="grid grid-cols-1 gap-3">
-            <a href="/rick/resume/" class="flex items-center justify-center w-full py-2.5 px-4 border border-blue-500 bg-blue-50 shadow-sm rounded-lg hover:bg-blue-100 transition-all duration-200 text-blue-700 font-bold text-sm">
-              My Resume
-            </a>
-            {profiles.length > 0 && profiles.map(([name, url]) => (
-              <a href={url as string} target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full py-2.5 px-4 border border-gray-200 shadow-sm rounded-lg hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 transition-all duration-200 text-blue-600 font-medium text-sm">
-                {name}
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
+    <ProfileCard 
+      person={person} 
+      avatarType="picture" 
+      avatarImage={profile_image}
+      includeResumeLink={true}
+    />
   </article>
 </Base>
 
