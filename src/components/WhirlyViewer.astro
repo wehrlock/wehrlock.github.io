@@ -127,13 +127,22 @@ const { initialDesign = "eye-stars" } = Astro.props;
     });
   });
 
+  function stopDecay() {
+    if (decayTimer !== null) {
+      cancelAnimationFrame(decayTimer);
+      decayTimer = null;
+    }
+  }
+
   btnUp.addEventListener("click", () => {
-    rps = Math.round((rps + 0.25) * 100) / 100;
+    stopDecay();
+    rps = Math.ceil(rps * 4 + 0.001) / 4;
     updateDisplay();
   });
 
   btnDown.addEventListener("click", () => {
-    rps = Math.max(0, Math.round((rps - 0.25) * 100) / 100);
+    stopDecay();
+    rps = Math.max(0, Math.floor(rps * 4 - 0.001) / 4);
     updateDisplay();
   });
 
@@ -160,10 +169,12 @@ const { initialDesign = "eye-stars" } = Astro.props;
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight") {
-      rps = Math.round((rps + 0.25) * 100) / 100;
+      stopDecay();
+      rps = Math.ceil(rps * 4 + 0.001) / 4;
       updateDisplay();
     } else if (e.key === "ArrowLeft") {
-      rps = Math.max(0, Math.round((rps - 0.25) * 100) / 100);
+      stopDecay();
+      rps = Math.max(0, Math.floor(rps * 4 - 0.001) / 4);
       updateDisplay();
     }
   });
