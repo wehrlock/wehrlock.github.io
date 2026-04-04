@@ -1,7 +1,7 @@
 ---
 import Base from '@layouts/Base.astro';
 import ProfileCard from '@components/ProfileCard.astro';
-import cover_image from '@assets/robert/cover.jpg';
+import avatar_image from '@assets/robert/avatar.jpg';
 import data from '@data/profiles.json';
 const person = data.robert;
 ---
@@ -9,8 +9,8 @@ const person = data.robert;
   <article class="container mx-auto max-w-prose py-8 px-4">
     <ProfileCard 
       person={person} 
-      avatarType="initial"
-      coverImage={cover_image}
+      avatarType="picture"
+      avatarImage={avatar_image}
     />
   </article>
 </Base>
