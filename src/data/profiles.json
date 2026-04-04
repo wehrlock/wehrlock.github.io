@@ -2,6 +2,7 @@
   "rick": {
     "path": "/rick/",
     "name": "Rick",
+    "familyName": "Wehrle",
     "profiles": {
       "Facebook": "https://www.facebook.com/wehrlock",
       "Github": "https://github.com/wehrlock",
@@ -14,6 +15,7 @@
   "ellen": {
     "path": "/ellen/",
     "name": "Ellen",
+    "familyName": "Wehrle",
     "profiles": {
       "Facebook": "https://www.facebook.com/ellen.wehrle",
       "Github": "https://github.com/EllenWehrle",
@@ -24,6 +26,7 @@
   "eva": {
     "path": "/eva/",
     "name": "Eva",
+    "familyName": "Wehrle",
     "profiles": {
       "Facebook": "https://www.facebook.com/eva.wehrle",
       "Instagram": "http://instagram.com/sshhmeeva",
@@ -35,6 +38,7 @@
   "anna": {
     "path": "/anna/",
     "name": "Anna",
+    "familyName": "Wehrle",
     "profiles": {
       "Facebook": "https://www.facebook.com/anna.wehrle.1",
       "Instagram": "https://www.instagram.com/jellybellyfishy/",
@@ -45,6 +49,7 @@
   "clara": {
     "path": "/clara/",
     "name": "Clara",
+    "familyName": "Wehrle",
     "profiles": {
       "Facebook": "https://www.facebook.com/profile.php?id=100006229958336",
       "Instagram": "https://www.instagram.com/clara.wehrle/",
@@ -54,6 +59,7 @@
   "robert": {
     "path": "/robert/",
     "name": "Robert",
+    "familyName": "Wehrle",
     "profiles": {}
   }
 }

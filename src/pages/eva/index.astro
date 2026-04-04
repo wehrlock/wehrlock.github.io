@@ -4,7 +4,7 @@ import ProfileCard from '@components/ProfileCard.astro';
 import data from '@data/profiles.json';
 const person = data.eva;
 ---
-<Base title={person.name + " Wehrle"}>
+<Base title={person.name + " " + person.familyName}>
   <article class="container mx-auto max-w-prose py-8 px-4">
     <ProfileCard 
       person={person} 

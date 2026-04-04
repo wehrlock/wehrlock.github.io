@@ -4,6 +4,7 @@ import { Picture, type ImageMetadata } from 'astro:assets';
 interface Props {
   person: {
     name: string;
+    familyName: string;
     profiles?: Record<string, string>;
     resume?: boolean;
   };
@@ -19,6 +20,7 @@ const {
   coverImage,
 } = Astro.props;
 
+const fullName = `${person.name} ${person.familyName}`;
 const includeResumeLink = !!person.resume;
 
 const profiles = Object.entries(person.profiles || {});
@@ -28,7 +30,7 @@ const profiles = Object.entries(person.profiles || {});
   {/* Header Section */}
   {coverImage ? (
     <div class="h-48 relative overflow-hidden">
-      <Picture src={coverImage} alt={person.name + " Wehrle"} class="w-full h-full object-cover object-center" priority />
+      <Picture src={coverImage} alt={fullName} class="w-full h-full object-cover object-center" priority />
       <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
     </div>
   ) : (
@@ -48,7 +50,7 @@ const profiles = Object.entries(person.profiles || {});
 
     {/* Name */}
     <div class="text-center mt-4 mb-6">
-      <h1 class="text-3xl font-bold text-gray-800">{person.name} Wehrle</h1>
+      <h1 class="text-3xl font-bold text-gray-800">{fullName}</h1>
     </div>
 
     {/* Links Section */}

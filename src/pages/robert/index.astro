@@ -5,7 +5,7 @@ import avatar_image from '@assets/robert/avatar.jpg';
 import data from '@data/profiles.json';
 const person = data.robert;
 ---
-<Base title={person.name + " Wehrle"}>
+<Base title={person.name + " " + person.familyName}>
   <article class="container mx-auto max-w-prose py-8 px-4">
     <ProfileCard 
       person={person} 
