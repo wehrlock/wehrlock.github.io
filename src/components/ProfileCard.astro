@@ -5,6 +5,7 @@ interface Props {
   person: {
     givenName: string;
     familyName: string;
+    path: string;
     profiles?: Record<string, string>;
     resume?: boolean;
   };
@@ -59,7 +60,7 @@ const profiles = Object.entries(person.profiles || {});
         <h2 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 text-center">Profiles & Links</h2>
         <div class="grid grid-cols-1 gap-3">
           {includeResumeLink && (
-            <a href={`/${person.givenName.toLowerCase()}/resume/`} class="flex items-center justify-center w-full py-2.5 px-4 border border-blue-500 bg-blue-50 shadow-sm rounded-lg hover:bg-blue-100 transition-all duration-200 text-blue-700 font-bold text-sm">
+            <a href={`${person.path}resume/`} class="flex items-center justify-center w-full py-2.5 px-4 border border-blue-500 bg-blue-50 shadow-sm rounded-lg hover:bg-blue-100 transition-all duration-200 text-blue-700 font-bold text-sm">
               My Resume
             </a>
           )}

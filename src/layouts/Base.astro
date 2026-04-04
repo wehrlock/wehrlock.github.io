@@ -26,9 +26,9 @@ const { title, excerpt } = Astro.props;
             <a href="/">
                 <Picture src={logo} alt="Tree of Life" width="40" height="40" priority  />
             </a>
-            <a href={data.rick.path} class="text-blue-500 hover:underline">{data.rick.name}</a>
+            <a href={data.rick.path} class="text-blue-500 hover:underline">{data.rick.givenName}</a>
             <b class="text-gray-500">&amp;</b>
-            <a href={data.ellen.path} class="text-blue-500 hover:underline">{data.ellen.name}</a>
+            <a href={data.ellen.path} class="text-blue-500 hover:underline">{data.ellen.givenName}</a>
         </nav>
         <nav class="flex items-center">
             <a href="/" class="border border-blue-500 text-blue-500 px-4 py-2 rounded hover:bg-blue-500 hover:text-white">Wehrle Family</a>
@@ -44,14 +44,14 @@ const { title, excerpt } = Astro.props;
                 &copy; {new Date().getFullYear()} <a href="/" class="text-blue-500 hover:underline">Wehrle Family</a>
             </nav>
             <nav class="mt-2">
-                <a href={data.rick.path} class="text-blue-500 hover:underline">{data.rick.name}</a> &middot;
-                <a href={data.ellen.path} class="text-blue-500 hover:underline">{data.ellen.name}</a>
+                <a href={data.rick.path} class="text-blue-500 hover:underline">{data.rick.givenName}</a> &middot;
+                <a href={data.ellen.path} class="text-blue-500 hover:underline">{data.ellen.givenName}</a>
             </nav>
             <nav class="mt-2">
-                <a href={data.eva.path} class="text-blue-500 hover:underline">{data.eva.name}</a> &middot;
-                <a href={data.anna.path} class="text-blue-500 hover:underline">{data.anna.name}</a> &middot;
-                <a href={data.clara.path} class="text-blue-500 hover:underline">{data.clara.name}</a> &middot;
-                <a href={data.robert.path} class="text-blue-500 hover:underline">{data.robert.name}</a>
+                <a href={data.eva.path} class="text-blue-500 hover:underline">{data.eva.givenName}</a> &middot;
+                <a href={data.anna.path} class="text-blue-500 hover:underline">{data.anna.givenName}</a> &middot;
+                <a href={data.clara.path} class="text-blue-500 hover:underline">{data.clara.givenName}</a> &middot;
+                <a href={data.robert.path} class="text-blue-500 hover:underline">{data.robert.givenName}</a>
             </nav>
         </div>
     </footer>
