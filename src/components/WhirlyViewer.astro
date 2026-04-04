@@ -14,11 +14,18 @@ const { initialDesign = "eye-stars" } = Astro.props;
   <div class="flex items-center gap-3">
     <button
       id="spin-left-btn"
-      class="px-3 py-1 rounded border border-gray-500 text-gray-400 text-sm font-medium hover:border-gray-300 hover:bg-gray-700 transition-colors"
+      class="w-9 h-9 rounded-full border-2 border-gray-500 text-gray-400 text-lg flex items-center justify-center hover:border-gray-300 hover:bg-gray-700 transition-colors"
+      aria-label="Spin Left"
     >&olarr;</button>
     <button
+      id="stop-btn"
+      class="w-9 h-9 rounded-full border-2 border-gray-500 text-gray-400 text-sm flex items-center justify-center hover:border-gray-300 hover:bg-gray-700 transition-colors"
+      aria-label="Stop Spinning"
+    >&#128721;</button>
+    <button
       id="spin-right-btn"
-      class="px-3 py-1 rounded border border-gray-500 text-gray-400 text-sm font-medium hover:border-gray-300 hover:bg-gray-700 transition-colors"
+      class="w-9 h-9 rounded-full border-2 border-gray-500 text-gray-400 text-lg flex items-center justify-center hover:border-gray-300 hover:bg-gray-700 transition-colors"
+      aria-label="Spin Right"
     >&orarr;</button>
   </div>
 
@@ -34,14 +41,6 @@ const { initialDesign = "eye-stars" } = Astro.props;
       class="w-9 h-9 rounded-full border-2 border-gray-500 text-gray-400 text-lg flex items-center justify-center hover:border-gray-300 hover:bg-gray-700 transition-colors"
       aria-label="Increase RPS"
     >&rarr;</button>
-  </div>
-
-  <div class="flex items-center gap-3">
-    <button
-      id="reset-btn"
-      class="w-9 h-9 rounded-full border-2 border-gray-500 text-gray-400 text-sm flex items-center justify-center hover:border-gray-300 hover:bg-gray-700 transition-colors"
-      aria-label="Reset"
-    >&#128721;</button>
   </div>
 
   <div class="flex flex-wrap justify-center gap-2" id="design-buttons"></div>
@@ -81,7 +80,7 @@ const { initialDesign = "eye-stars" } = Astro.props;
 
   const btnSpinRight = document.getElementById("spin-right-btn")!;
   const btnSpinLeft = document.getElementById("spin-left-btn")!;
-  const btnReset = document.getElementById("reset-btn")!;
+  const btnStop = document.getElementById("stop-btn")!;
 
 
   let rps = 0.5;
@@ -205,7 +204,7 @@ const { initialDesign = "eye-stars" } = Astro.props;
   btnSpinRight.addEventListener("click", startDecay);
   btnSpinLeft.addEventListener("click", startDecayLeft);
 
-  btnReset.addEventListener("click", () => {
+  btnStop.addEventListener("click", () => {
     stopDecay();
     rps = 0;
     angle = 0;
