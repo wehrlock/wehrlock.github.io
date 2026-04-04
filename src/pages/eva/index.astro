@@ -3,7 +3,7 @@ import Base from '@layouts/Base.astro';
 import ProfileCard from '@components/ProfileCard.astro';
 import data from '@data/profiles.json';
 const person = data.eva;
-const fullName = person.name + " " + person.familyName;
+const fullName = person.givenName + " " + person.familyName;
 ---
 <Base title={fullName}>
   <article class="container mx-auto max-w-prose py-8 px-4">

@@ -1,7 +1,7 @@
 {
   "rick": {
     "path": "/rick/",
-    "name": "Rick",
+    "givenName": "Rick",
     "familyName": "Wehrle",
     "profiles": {
       "Facebook": "https://www.facebook.com/wehrlock",
@@ -14,7 +14,7 @@
   },
   "ellen": {
     "path": "/ellen/",
-    "name": "Ellen",
+    "givenName": "Ellen",
     "familyName": "Wehrle",
     "profiles": {
       "Facebook": "https://www.facebook.com/ellen.wehrle",
@@ -25,7 +25,7 @@
   },
   "eva": {
     "path": "/eva/",
-    "name": "Eva",
+    "givenName": "Eva",
     "familyName": "Wehrle",
     "profiles": {
       "Facebook": "https://www.facebook.com/eva.wehrle",
@@ -37,7 +37,7 @@
   },
   "anna": {
     "path": "/anna/",
-    "name": "Anna",
+    "givenName": "Anna",
     "familyName": "Wehrle",
     "profiles": {
       "Facebook": "https://www.facebook.com/anna.wehrle.1",
@@ -48,7 +48,7 @@
   },
   "clara": {
     "path": "/clara/",
-    "name": "Clara",
+    "givenName": "Clara",
     "familyName": "Wehrle",
     "profiles": {
       "Facebook": "https://www.facebook.com/profile.php?id=100006229958336",
@@ -58,7 +58,7 @@
   },
   "robert": {
     "path": "/robert/",
-    "name": "Robert",
+    "givenName": "Robert",
     "familyName": "Wehrle",
     "profiles": {}
   }
