@@ -3,8 +3,9 @@ import Base from '@layouts/Base.astro';
 import ProfileCard from '@components/ProfileCard.astro';
 import data from '@data/profiles.json';
 const person = data.anna;
+const fullName = person.name + " " + person.familyName;
 ---
-<Base title={person.name + " " + person.familyName}>
+<Base title={fullName}>
   <article class="container mx-auto max-w-prose py-8 px-4">
     <ProfileCard 
       person={person} 
