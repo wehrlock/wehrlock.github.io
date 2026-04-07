@@ -21,35 +21,35 @@ const { initialDesign = "eye-stars" } = Astro.props;
 
   <div class="flex items-center gap-3">
     <button
-      id="rps-down"
-      class="w-9 h-9 rounded-full border-2 border-gray-500 text-gray-400 text-lg flex items-center justify-center hover:border-gray-300 hover:bg-gray-700 transition-colors"
-      aria-label="Decrease RPS"
-      title="Decrease RPS"
-    >&larr;</button>
-    <button
       id="spin-left-btn"
       class="w-9 h-9 rounded-full border-2 border-gray-500 text-gray-400 text-lg flex items-center justify-center hover:border-gray-300 hover:bg-gray-700 transition-colors"
       aria-label="Spin Left with Decay"
       title="Spin Left with Decay"
     >&olarr;</button>
     <button
+      id="rps-down"
+      class="w-9 h-9 rounded-full border-2 border-gray-500 text-gray-400 text-lg flex items-center justify-center hover:border-gray-300 hover:bg-gray-700 transition-colors"
+      aria-label="Decrease RPS"
+      title="Decrease RPS"
+    >&#9664;</button>
+    <button
       id="stop-btn"
       class="w-9 h-9 rounded-full border-2 border-gray-500 text-gray-400 text-sm flex items-center justify-center hover:border-gray-300 hover:bg-gray-700 transition-colors"
       aria-label="Stop Spinning"
       title="Stop Spinning"
-    ><svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></button>
+    >&#9632;</button>
+    <button
+      id="rps-up"
+      class="w-9 h-9 rounded-full border-2 border-gray-500 text-gray-400 text-lg flex items-center justify-center hover:border-gray-300 hover:bg-gray-700 transition-colors"
+      aria-label="Increase RPS"
+      title="Increase RPS"
+    >&#9654;</button>
     <button
       id="spin-right-btn"
       class="w-9 h-9 rounded-full border-2 border-gray-500 text-gray-400 text-lg flex items-center justify-center hover:border-gray-300 hover:bg-gray-700 transition-colors"
       aria-label="Spin Right with Decay"
       title="Spin Right with Decay"
     >&orarr;</button>
-    <button
-      id="rps-up"
-      class="w-9 h-9 rounded-full border-2 border-gray-500 text-gray-400 text-lg flex items-center justify-center hover:border-gray-300 hover:bg-gray-700 transition-colors"
-      aria-label="Increase RPS"
-      title="Increase RPS"
-    >&rarr;</button>
   </div>
 
   <div class="flex items-center gap-3">
