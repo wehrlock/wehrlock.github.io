@@ -59,7 +59,8 @@ const { initialDesign = "eye-stars" } = Astro.props;
 </div>
 
 <style>
-  #whirly-viewer:fullscreen {
+  #whirly-viewer:fullscreen,
+  #whirly-viewer.fake-fullscreen {
     background: black;
     display: flex;
     flex-direction: column;
@@ -68,7 +69,15 @@ const { initialDesign = "eye-stars" } = Astro.props;
     max-width: 100%;
     padding: 1rem;
   }
-  #whirly-viewer:fullscreen #whirly-svg-container {
+  #whirly-viewer.fake-fullscreen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+  }
+  #whirly-viewer:fullscreen #whirly-svg-container,
+  #whirly-viewer.fake-fullscreen #whirly-svg-container {
     width: 80vh;
     height: 80vh;
     max-width: 100vw;
@@ -231,11 +240,27 @@ const { initialDesign = "eye-stars" } = Astro.props;
     }
   });
 
+  const canFullscreen = document.fullscreenEnabled || (document as any).webkitFullscreenEnabled;
+
+  function isFakeFullscreen() {
+    return viewer.classList.contains("fake-fullscreen");
+  }
+
+  function toggleFakeFullscreen(enter: boolean) {
+    viewer.classList.toggle("fake-fullscreen", enter);
+    fsExpand.classList.toggle("hidden", enter);
+    fsCompress.classList.toggle("hidden", !enter);
+  }
+
   btnFullscreen.addEventListener("click", () => {
-    if (document.fullscreenElement) {
-      document.exitFullscreen();
+    if (canFullscreen) {
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else {
+        viewer.requestFullscreen();
+      }
     } else {
-      viewer.requestFullscreen();
+      toggleFakeFullscreen(!isFakeFullscreen());
     }
   });
 
@@ -243,6 +268,12 @@ const { initialDesign = "eye-stars" } = Astro.props;
     const isFs = !!document.fullscreenElement;
     fsExpand.classList.toggle("hidden", isFs);
     fsCompress.classList.toggle("hidden", !isFs);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && isFakeFullscreen()) {
+      toggleFakeFullscreen(false);
+    }
   });
 
   // Load design matching the route
