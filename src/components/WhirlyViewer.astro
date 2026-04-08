@@ -56,6 +56,10 @@ const { initialDesign = "eye-stars" } = Astro.props;
     <span id="rps-display" class="tabular-nums text-sm min-w-[7ch] text-center text-gray-400">0.50 rps</span>
   </div>
 
+  <div class="flex items-center gap-2 flex-wrap justify-center" id="color-picker">
+    <span class="text-xs text-gray-500 mr-1">Colors</span>
+  </div>
+
 </div>
 
 <style>
@@ -91,9 +95,22 @@ const { initialDesign = "eye-stars" } = Astro.props;
     { name: "Stirry Starry", file: "/whirly/stirry-starry-animated.svg", id: "stirry-starry" },
   ];
 
+  const colorPairs = [
+    { name: "Black & White", color1: "#000000", color2: "#ffffff" },
+    { name: "Blue & Red", color1: "#1d4ed8", color2: "#dc2626" },
+    { name: "Navy & Gold", color1: "#1e3a5f", color2: "#f59e0b" },
+    { name: "Purple & Green", color1: "#7e22ce", color2: "#22c55e" },
+    { name: "Teal & Coral", color1: "#0d9488", color2: "#fb7185" },
+    { name: "Red & White", color1: "#dc2626", color2: "#ffffff" },
+    { name: "Blue & White", color1: "#2563eb", color2: "#ffffff" },
+  ];
+
+  let activeColorPair = colorPairs[0];
+
   const viewer = document.getElementById("whirly-viewer")!;
   const initialDesign = viewer.dataset.initialDesign || "eye-stars";
   const container = document.getElementById("whirly-svg-container")!;
+  const colorPickerEl = document.getElementById("color-picker")!;
   const display = document.getElementById("rps-display")!;
   const btnUp = document.getElementById("rps-up")!;
   const btnDown = document.getElementById("rps-down")!;
@@ -131,6 +148,48 @@ const { initialDesign = "eye-stars" } = Astro.props;
     display.textContent = prefix + Math.abs(rps).toFixed(2) + " rps";
   }
 
+  function recolorSvg() {
+    const els = container.querySelectorAll("[fill], [stroke]");
+    els.forEach((el) => {
+      // Store originals on first pass
+      if (!el.hasAttribute("data-orig-fill") && el.hasAttribute("fill")) {
+        el.setAttribute("data-orig-fill", el.getAttribute("fill")!.toLowerCase());
+      }
+      if (!el.hasAttribute("data-orig-stroke") && el.hasAttribute("stroke")) {
+        el.setAttribute("data-orig-stroke", el.getAttribute("stroke")!.toLowerCase());
+      }
+      const origFill = el.getAttribute("data-orig-fill");
+      const origStroke = el.getAttribute("data-orig-stroke");
+      if (origFill === "black" || origFill === "#000000") el.setAttribute("fill", activeColorPair.color1);
+      else if (origFill === "white" || origFill === "#ffffff") el.setAttribute("fill", activeColorPair.color2);
+      if (origStroke === "black" || origStroke === "#000000") el.setAttribute("stroke", activeColorPair.color1);
+      else if (origStroke === "white" || origStroke === "#ffffff") el.setAttribute("stroke", activeColorPair.color2);
+    });
+  }
+
+  // Build color swatch buttons
+  colorPairs.forEach((pair, i) => {
+    const btn = document.createElement("button");
+    btn.className = "w-7 h-7 rounded-full border-2 flex overflow-hidden" +
+      (i === 0 ? " border-blue-500" : " border-gray-600 hover:border-gray-400");
+    btn.title = pair.name;
+    btn.setAttribute("aria-label", pair.name);
+    btn.innerHTML =
+      `<span class="w-1/2 h-full" style="background:${pair.color1}"></span>` +
+      `<span class="w-1/2 h-full" style="background:${pair.color2}"></span>`;
+    btn.addEventListener("click", () => {
+      activeColorPair = pair;
+      colorPickerEl.querySelectorAll("button").forEach((b) => {
+        b.classList.remove("border-blue-500");
+        b.classList.add("border-gray-600");
+      });
+      btn.classList.remove("border-gray-600");
+      btn.classList.add("border-blue-500");
+      recolorSvg();
+    });
+    colorPickerEl.appendChild(btn);
+  });
+
   async function loadDesign(file: string, id: string) {
     if (currentDesign === id) return;
     currentDesign = id;
@@ -154,6 +213,7 @@ const { initialDesign = "eye-stars" } = Astro.props;
     if (spinner) {
       spinner.style.animation = "none";
     }
+    recolorSvg();
     updateDisplay();
   }
 
