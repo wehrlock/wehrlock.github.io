@@ -5,6 +5,7 @@ import DesignNav from '@components/DesignNav.astro';
 
 const designs = [
   { name: "Eye Stars", id: "eye-stars" },
+  { name: "Wehrlock", id: "wehrlock" },
   { name: "Hexxy Haxxy", id: "hexxy-haxxy" },
   { name: "Stirry Starry", id: "stirry-starry" },
 ];
@@ -12,6 +13,7 @@ const designs = [
 export function getStaticPaths() {
   return [
     { params: { design: "eye-stars" } },
+    { params: { design: "wehrlock" } },
     { params: { design: "hexxy-haxxy" } },
     { params: { design: "stirry-starry" } },
   ];
