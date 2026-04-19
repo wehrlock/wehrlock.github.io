@@ -24,7 +24,7 @@ const current = designs.find(d => d.id === design)!;
 ---
 <Base title={`Whirly — ${current.name}`}>
   <article class="container mx-auto max-w-prose py-8 px-4">
-    <h1 class="text-3xl font-bold tracking-wide text-center mb-8">Wehrle Whirly</h1>
+    <h1 class="text-3xl font-bold tracking-wide text-center mb-8">Wehrle Whirly {current.name}</h1>
     <WhirlyViewer initialDesign={design} />
     <div class="mt-8">
       <DesignNav currentDesign={design} />
