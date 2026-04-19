@@ -20,11 +20,12 @@ const robert = data.robert;
     </section>
     <section class="m-4">
       <h2 class="text-xl font-bold mb-4">Wehrle Whirly Designs</h2>
-      <div class="grid grid-cols-3 gap-4">
+      <div class="grid grid-cols-2 gap-4">
         {[
+          { name: "Wehrlock", id: "wehrlock" },
           { name: "Eye Stars", id: "eye-stars" },
-          { name: "Hexxy Haxxy", id: "hexxy-haxxy" },
           { name: "Stirry Starry", id: "stirry-starry" },
+          { name: "Hexxy Haxxy", id: "hexxy-haxxy" },
         ].map((design) => (
           <a href={`/whirly/${design.id}/`} class="flex flex-col items-center gap-2 group">
             <img
