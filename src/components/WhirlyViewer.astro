@@ -5,18 +5,22 @@ interface Props {
 const { initialDesign = "eye-stars" } = Astro.props;
 ---
 
-<div class="flex flex-col items-center gap-8 w-full max-w-lg mx-auto" id="whirly-viewer" data-initial-design={initialDesign}>
+<div class="flex flex-col items-center gap-2 w-full max-w-lg mx-auto" id="whirly-viewer" data-initial-design={initialDesign}>
   <div class="relative">
     <div
       id="whirly-svg-container"
       class="w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center"
-    ></div>
+    />
     <button
       id="fullscreen-btn"
       class="absolute top-2 right-2 w-8 h-8 rounded border border-gray-500 text-gray-400 flex items-center justify-center hover:border-gray-300 hover:bg-gray-700 transition-colors"
       aria-label="Toggle Fullscreen"
       title="Toggle Fullscreen"
     ><svg id="fs-expand" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg><svg id="fs-compress" class="w-4 h-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/></svg></button>
+  </div>
+
+  <div class="flex items-center gap-3">
+    <span id="rps-display" class="tabular-nums text-sm min-w-[7ch] text-center text-gray-400">0.50 rps</span>
   </div>
 
   <div class="flex items-center gap-3">
@@ -52,13 +56,9 @@ const { initialDesign = "eye-stars" } = Astro.props;
     >&orarr;</button>
   </div>
 
-  <div class="flex items-center gap-3">
-    <span id="rps-display" class="tabular-nums text-sm min-w-[7ch] text-center text-gray-400">0.50 rps</span>
-  </div>
+  <div class="flex items-center gap-2 flex-wrap justify-center" id="color-picker" />
 
-  <div class="flex items-center gap-2 flex-wrap justify-center" id="color-picker">
-    <span class="text-xs text-gray-500 mr-1">Colors</span>
-  </div>
+  <div class="flex items-center gap-2 flex-wrap justify-center hidden" id="variant-picker" />
 
 </div>
 
@@ -95,6 +95,14 @@ const { initialDesign = "eye-stars" } = Astro.props;
     { name: "Hexxy Haxxy", file: "/whirly/hexxy-haxxy-animated.svg", id: "hexxy-haxxy" },
     { name: "Hex Stars", file: "/whirly/hex-stars-animated.svg", id: "hex-stars" },
     { name: "Stirry Starry", file: "/whirly/stirry-starry-animated.svg", id: "stirry-starry" },
+    { name: "Poly Spiral", file: "/whirly/poly-spiral-6-animated.svg", id: "poly-spiral" },
+  ];
+
+  const polyVariants = [
+    { label: "6", file: "/whirly/poly-spiral-6-animated.svg" },
+    { label: "8", file: "/whirly/poly-spiral-8-animated.svg" },
+    { label: "10", file: "/whirly/poly-spiral-10-animated.svg" },
+    { label: "12", file: "/whirly/poly-spiral-12-animated.svg" },
   ];
 
   const colorPairs = [
@@ -113,6 +121,7 @@ const { initialDesign = "eye-stars" } = Astro.props;
   const initialDesign = viewer.dataset.initialDesign || "eye-stars";
   const container = document.getElementById("whirly-svg-container")!;
   const colorPickerEl = document.getElementById("color-picker")!;
+  const variantPickerEl = document.getElementById("variant-picker")!;
   const display = document.getElementById("rps-display")!;
   const btnUp = document.getElementById("rps-up")!;
   const btnDown = document.getElementById("rps-down")!;
@@ -192,9 +201,38 @@ const { initialDesign = "eye-stars" } = Astro.props;
     colorPickerEl.appendChild(btn);
   });
 
+  // Build variant picker buttons
+  polyVariants.forEach((variant, i) => {
+    const btn = document.createElement("button");
+    btn.className = "w-9 h-9 rounded-full border-2 text-sm font-medium flex items-center justify-center transition-colors" +
+      (i === 0 ? " border-blue-500 bg-blue-500 text-white" : " border-gray-600 text-gray-400 hover:border-gray-400 hover:text-gray-600");
+    btn.textContent = variant.label;
+    btn.title = `${variant.label} sides`;
+    btn.setAttribute("aria-label", `${variant.label} sides`);
+    btn.addEventListener("click", () => {
+      variantPickerEl.querySelectorAll("button").forEach((b) => {
+        b.classList.remove("border-blue-500", "bg-blue-500", "text-white");
+        b.classList.add("border-gray-600", "text-gray-400");
+      });
+      btn.classList.remove("border-gray-600", "text-gray-400");
+      btn.classList.add("border-blue-500", "bg-blue-500", "text-white");
+      currentDesign = null;
+      loadDesign(variant.file, "poly-spiral");
+    });
+    variantPickerEl.appendChild(btn);
+  });
+
   async function loadDesign(file: string, id: string) {
     if (currentDesign === id) return;
     currentDesign = id;
+
+    // Show/hide variant picker
+    if (id === "poly-spiral") {
+      variantPickerEl.classList.remove("hidden");
+    } else {
+      variantPickerEl.classList.add("hidden");
+    }
+
     const res = await fetch(file);
     let svgText = await res.text();
     svgText = svgText.replace(/<\?xml[^?]*\?>/, "");

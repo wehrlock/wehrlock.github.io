@@ -10,10 +10,11 @@ const designs = [
   { name: "Stirry Starry", id: "stirry-starry" },
   { name: "Hexxy Haxxy", id: "hexxy-haxxy" },
   { name: "Hex Stars", id: "hex-stars" },
+  { name: "Poly Spiral", id: "poly-spiral" },
 ];
 ---
 
-<div class="flex flex-wrap justify-center gap-2" id="design-buttons">
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-2 max-w-md mx-auto" id="design-buttons">
   {designs.map((d) => (
     <a
       href={`/whirly/${d.id}/`}
