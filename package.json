@@ -9,7 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.11",
+    "@tailwindcss/vite": "^4.3.2",
     "astro": "^5.11.0",
     "tailwindcss": "^4.1.11"
   }
